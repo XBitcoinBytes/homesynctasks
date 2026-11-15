@@ -1,0 +1,280 @@
+Step 4: Core Features and Implementation Phases
+Phase 1: Setup and Authentication
+Goal: Set up the project and enable multi-user household accounts.
+
+Tasks:
+Create a Replit project with Node.js and React.
+
+Install dependencies: react, react-router-dom, tailwindcss, firebase, twilio.
+
+Configure Firebase Authentication (email/password) for user sign-up/login.
+
+Create a household creation flow where users can:
+Create a household (e.g., "Smith Family").
+
+Invite others via email to join with equal permissions.
+Store user profiles in Firestore with notification preferences and phone numbers.
+Replit Steps:
+Initialize a Node.js project: npm init -y.
+
+Install React: npx create-react-app client.
+
+Add Firebase: npm install firebase.
+
+Add Tailwind: Follow Tailwind CSS setup for React.
+
+Set up Firebase in src/firebase.js with Authentication and Firestore.
+
+Create UI components: Login.js, SignUp.js, HouseholdSetup.js.
+Phase 2: Task and Zone Management
+Goal: Build the task library and zone/room customization.
+
+Tasks:
+Seed Firestore with 300+ predefined tasks (e.g., "Clean Baseboards", "Change Furnace Filter", "Weed Front Flower Bed") across categories (Cleaning, Maintenance, Yardwork).
+
+Create a task selection UI with:
+Searchable, categorized list with checkboxes.
+
+Option to add custom tasks (name, category, default frequency).
+
+Delete option for irrelevant tasks.
+Create a zone/room management UI with:
+Predefined rooms (e.g., Main Kitchen, Master Bedroom, Guest Bath) and zones (e.g., Front of Home, Gutters).
+
+Add/edit/delete custom zones with type (Indoor/Outdoor) and optional parent zone.
+Link tasks to zones in the UI.
+Replit Steps:
+Create Tasks.js component for task selection with filters and checkboxes.
+
+Create Zones.js component for managing rooms/zones.
+
+Write Firestore queries to fetch/save tasks and zones.
+
+Use Tailwind for responsive grids and modals.
+Phase 3: Scheduling and Notifications
+Goal: Implement task scheduling, daily task lists, and SMS notifications.
+
+Tasks:
+Build a frequency selection UI:
+Dropdown for standard frequencies (Daily, Weekly, Monthly, Every 3 Months, etc.).
+
+Input for custom intervals (e.g., "Every 45 days").
+Develop a scheduling engine:
+Calculate nextDue dates based on frequency and lastCompleted.
+
+Use a simple AI algorithm to balance tasks:
+Estimate effort (default or user-provided, e.g., 30 minutes).
+
+Distribute tasks to limit daily workload (e.g., ~1 hour/day).
+
+Prioritize overdue tasks and spread others evenly.
+Generate daily/weekly/monthly task lists, grouped by zone.
+
+Integrate Twilio for SMS notifications:
+Send daily/weekly task lists based on user preferences.
+
+Allow critical task alerts (e.g., overdue maintenance).
+Allow users to mark tasks as complete, updating lastCompleted and nextDue.
+Replit Steps:
+Create Schedule.js component for frequency selection and task list display.
+
+Write scheduling logic in src/utils/scheduler.js to calculate due dates and balance workloads.
+
+Set up Twilio in the backend: npm install twilio.
+
+Create a Cloud Function (Firebase) to send SMS via Twilio based on user preferences.
+Phase 4: Analytics and Progress Tracking
+Goal: Add dashboards, task history, and analytics for neglected tasks.
+
+Tasks:
+Build a dashboard showing:
+Daily task list with checkmark completion.
+
+Completion stats (e.g., "80% of monthly tasks done").
+
+Calendar view for upcoming/overdue tasks.
+Display task history (e.g., "Gutters last cleaned 92 days ago").
+
+Highlight neglected tasks (e.g., tasks overdue by >30% of their frequency).
+
+Provide trends (e.g., most neglected zones, completion rates per user).
+Replit Steps:
+Create Dashboard.js component with charts (use chart.js or recharts).
+
+Write Firestore queries for task history and analytics.
+
+Style with Tailwind for a clean, visual layout.
+Phase 5: PWA and Public Launch
+Goal: Make the app installable and shareable.
+
+Tasks:
+Add PWA support using Workbox or Vite PWA plugin:
+Generate manifest.json and service worker.
+
+Ensure installability on mobile/desktop.
+Deploy to Firebase Hosting.
+
+Add optional Bitcoin donation support (e.g., QR code or wallet address in settings).
+
+Create a public landing page with instructions and a link to the app.
+
+Optional: Open-source the code on GitHub and add a print-friendly task list export.
+Replit Steps:
+Install Workbox: npm install workbox-build workbox-cli.
+
+Configure PWA in public/manifest.json and src/serviceWorker.js.
+
+Deploy: firebase deploy (after setting up Firebase CLI).
+
+Add donation UI in Settings.js.
+Step 5: Sample Task Library
+Here’s a starting point for the 300+ task library (to be seeded in Firestore):
+Cleaning:
+Wash windows (Indoor/Outdoor, Monthly)
+
+Clean baseboards (Indoor, Monthly)
+
+Clean toilets (Indoor, Weekly)
+
+Dust light fixtures (Indoor, Monthly)
+
+Clean microwave (Indoor, Weekly)
+
+Vacuum carpets (Indoor, Weekly)
+
+Mop floors (Indoor, Weekly)
+
+Clean and condition couches (Indoor, Every 6 months)
+Maintenance:
+Change furnace filter (Indoor, Every 3 months)
+
+Add salt to water softener (Indoor, Monthly)
+
+Lubricate treadmill (Indoor, Every 6 months)
+
+Change fish tank water (Indoor, Monthly)
+
+Check gutters (Outdoor, Every 3 months)
+Yardwork:
+Weed front flower bed (Outdoor, Weekly)
+
+Trim trees (Outdoor, Every 6 months)
+
+Water plants (Outdoor, Daily)
+
+Mow lawn (Outdoor, Weekly)
+Seasonal:
+Hang Christmas lights (Outdoor, Yearly, November)
+
+Clean outdoor furniture (Outdoor, Every Spring)
+Full list to be expanded to 300+ tasks, categorized and linked to zones.
+Step 6: Clarifications Addressed
+Your clarifications have been integrated:
+Free Access: The app will be free, with optional Bitcoin donations.
+
+Web + Mobile PWA: Built as a PWA for browser access and installability.
+
+No Offline Support: Internet connection assumed.
+
+User Profiles: Firebase Authentication for profiles, tracking progress, and notifications.
+
+Equal Permissions: All household members can add/delete/complete tasks.
+
+SMS Notifications: Twilio for daily/weekly/critical task reminders.
+
+Task History: Track lastCompleted and show days since completion.
+
+AI Workload Balancing: Distribute tasks to ensure ~1 hour/day.
+
+Analytics: Highlight neglected tasks and completion trends.
+Step 7: Additional Considerations
+Task Effort Estimation: Allow users to input estimated task duration (e.g., 30 minutes) for better workload balancing.
+
+Seasonal Templates: Predefined task lists for seasons (e.g., Spring yardwork).
+
+Gamification: Badges for streaks (e.g., "30 days of tasks completed").
+
+Export/Import: Allow users to export task lists or import templates.
+
+Accessibility: High-contrast mode and keyboard navigation for inclusivity.
+Step 8: Replit Setup Instructions
+Create Replit Project:
+Go to Replit, create a new Node.js repl.
+
+Run: npx create-react-app client to set up React.
+
+Install dependencies: npm install firebase twilio chart.js react-router-dom.
+
+Set up Tailwind: Follow Tailwind CSS for Create React App.
+Configure Firebase:
+Create a Firebase project at console.firebase.google.com.
+
+Enable Authentication (Email/Password) and Firestore.
+
+Add Firebase config to src/firebase.js:
+javascript
+import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
+
+const firebaseConfig = {
+  // Your Firebase config object
+};
+
+const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app);
+export const db = getFirestore(app);
+Seed Task Library:
+Create a script (seedTasks.js) to populate Firestore with 300+ tasks.
+
+Example:
+javascript
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "./firebase";
+
+const tasks = [
+  { name: "Clean Baseboards", category: "Cleaning", defaultFrequency: "Monthly" },
+  // Add 300+ tasks
+];
+
+tasks.forEach(async (task) => {
+  await addDoc(collection(db, "tasks"), task);
+});
+Build Core UI:
+Create components: Login.js, Dashboard.js, Tasks.js, Zones.js, Schedule.js.
+
+Use React Router for navigation:
+javascript
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Dashboard />} />
+        <Route path="/tasks" element={<Tasks />} />
+        <Route path="/zones" element={<Zones />} />
+        <Route path="/schedule" element={<Schedule />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+Implement PWA:
+Add public/manifest.json:
+json
+{
+  "name": "HomeSync Tasks",
+  "short_name": "HomeSync",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
+Add service worker with Workbox in src/serviceWorker.js.
+Test and Deploy:
+Test locally on Replit’s preview.
+
+Deploy to Firebase Hosting: firebase init hosting and firebase deploy.
+
+Share the app URL with household members.
+

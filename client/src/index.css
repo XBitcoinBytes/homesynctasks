@@ -1,0 +1,498 @@
+@import url('https://fonts.googleapis.com/css2?family=Creepster&family=Fredoka+One&family=Pacifico&family=Bungee&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(139, 92, 246, 0.6);
+  }
+}
+
+.shimmer-effect {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+.floating {
+  animation: float 3s ease-in-out infinite;
+}
+
+.glow-effect {
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+.card-3d {
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease;
+}
+
+.card-3d:hover {
+  transform: perspective(1000px) rotateX(5deg) rotateY(5deg) translateZ(20px);
+}
+
+.interactive-depth {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.interactive-depth:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15), 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+:root {
+  --background: hsl(43, 87%, 98%);
+  --foreground: hsl(20, 14.3%, 4.1%);
+  --muted: hsl(60, 4.8%, 95.9%);
+  --muted-foreground: hsl(25, 5.3%, 44.7%);
+  --popover: hsl(45, 100%, 97%);
+  --popover-foreground: hsl(20, 14.3%, 4.1%);
+  --card: hsl(45, 100%, 97%);
+  --card-foreground: hsl(20, 14.3%, 4.1%);
+  --border: hsl(43, 31.8%, 91.4%);
+  --input: hsl(43, 31.8%, 91.4%);
+  --primary: hsl(32, 95%, 44%);
+  --primary-foreground: hsl(60, 9.1%, 97.8%);
+  --secondary: hsl(43, 100%, 85%);
+  --secondary-foreground: hsl(24, 9.8%, 10%);
+  --accent: hsl(43, 100%, 85%);
+  --accent-foreground: hsl(24, 9.8%, 10%);
+  --destructive: hsl(0, 84%, 60%);
+  --destructive-foreground: hsl(60, 9%, 98%);
+  --ring: hsl(32, 95%, 44%);
+  --radius: 1rem;
+
+  /* Custom theme colors */
+  --theme-orange: hsl(32, 95%, 44%);
+  --theme-amber: hsl(45, 100%, 51%);
+  --theme-gold: hsl(48, 100%, 67%);
+  --theme-dark: hsl(24, 9.8%, 10%);
+  --shadow-whimsy: 0 20px 40px rgba(251, 146, 60, 0.3);
+  --shadow-burton: 0 25px 50px rgba(0, 0, 0, 0.4);
+  --shadow-picasso: 0 15px 35px rgba(245, 158, 11, 0.5);
+
+  --slate-50: hsl(210, 40%, 98%);
+  --slate-100: hsl(210, 40%, 96%);
+  --slate-200: hsl(214, 32%, 91%);
+  --slate-300: hsl(213, 27%, 84%);
+  --slate-400: hsl(215, 20%, 65%);
+  --slate-500: hsl(215, 16%, 47%);
+  --slate-600: hsl(215, 19%, 35%);
+  --slate-700: hsl(215, 25%, 27%);
+  --slate-800: hsl(217, 33%, 17%);
+  --slate-900: hsl(222, 84%, 5%);
+
+  --violet-100: hsl(240, 100%, 95%);
+  --violet-600: hsl(242, 91%, 67%);
+
+  --emerald-100: hsl(149, 80%, 90%);
+  --emerald-400: hsl(160, 84%, 39%);
+  --emerald-600: hsl(158, 64%, 52%);
+  --emerald-800: hsl(158, 88%, 30%);
+
+  --blue-100: hsl(221, 91%, 91%);
+  --blue-600: hsl(221, 83%, 53%);
+  --blue-800: hsl(217, 91%, 60%);
+
+  --amber-100: hsl(48, 100%, 88%);
+  --amber-600: hsl(32, 95%, 44%);
+
+  --red-50: hsl(0, 86%, 97%);
+  --red-100: hsl(0, 93%, 94%);
+  --red-200: hsl(0, 96%, 89%);
+  --red-300: hsl(0, 94%, 82%);
+  --red-600: hsl(0, 84%, 60%);
+  --red-800: hsl(0, 70%, 35%);
+
+  --chart-1: hsl(207, 90%, 54%);
+  --chart-2: hsl(32, 95%, 44%);
+  --chart-3: hsl(158, 64%, 52%);
+  --chart-4: hsl(242, 91%, 67%);
+  --chart-5: hsl(350, 89%, 60%);
+
+  --sidebar-background: hsl(0, 0%, 100%);
+  --sidebar-foreground: hsl(240, 10%, 3.9%);
+  --sidebar-primary: hsl(207, 90%, 54%);
+  --sidebar-primary-foreground: hsl(211, 100%, 99%);
+  --sidebar-accent: hsl(210, 40%, 96%);
+  --sidebar-accent-foreground: hsl(222, 84%, 5%);
+  --sidebar-border: hsl(220, 13%, 91%);
+  --sidebar-ring: hsl(207, 90%, 54%);
+}
+
+.dark {
+  --background: hsl(240, 10%, 3.9%);
+  --foreground: hsl(0, 0%, 98%);
+  --muted: hsl(240, 3.7%, 15.9%);
+  --muted-foreground: hsl(240, 5%, 64.9%);
+  --popover: hsl(240, 10%, 3.9%);
+  --popover-foreground: hsl(0, 0%, 98%);
+  --card: hsl(240, 10%, 3.9%);
+  --card-foreground: hsl(0, 0%, 98%);
+  --border: hsl(240, 3.7%, 15.9%);
+  --input: hsl(240, 3.7%, 15.9%);
+  --primary: hsl(207, 90%, 54%);
+  --primary-foreground: hsl(211, 100%, 99%);
+  --secondary: hsl(240, 3.7%, 15.9%);
+  --secondary-foreground: hsl(0, 0%, 98%);
+  --accent: hsl(240, 3.7%, 15.9%);
+  --accent-foreground: hsl(0, 0%, 98%);
+  --destructive: hsl(0, 62.8%, 30.6%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(207, 90%, 54%);
+
+  --sidebar-background: hsl(240, 10%, 3.9%);
+  --sidebar-foreground: hsl(0, 0%, 98%);
+  --sidebar-primary: hsl(207, 90%, 54%);
+  --sidebar-primary-foreground: hsl(211, 100%, 99%);
+  --sidebar-accent: hsl(240, 3.7%, 15.9%);
+  --sidebar-accent-foreground: hsl(0, 0%, 98%);
+  --sidebar-border: hsl(240, 3.7%, 15.9%);
+  --sidebar-ring: hsl(207, 90%, 54%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold;
+  }
+}
+
+@layer components {
+  .text-primary-600 {
+    color: hsl(207, 90%, 54%);
+  }
+  
+  .text-primary-700 {
+    color: hsl(207, 90%, 45%);
+  }
+
+  .bg-primary-600 {
+    background-color: hsl(207, 90%, 54%);
+  }
+
+  .bg-primary-700 {
+    background-color: hsl(207, 90%, 45%);
+  }
+
+  .hover\:bg-primary-700:hover {
+    background-color: hsl(207, 90%, 45%);
+  }
+
+  .border-primary-500 {
+    border-color: hsl(207, 90%, 54%);
+  }
+
+  .bg-primary-50 {
+    background-color: hsl(214, 100%, 97%);
+  }
+
+  /* Slate colors */
+  .bg-slate-50 {
+    background-color: hsl(210, 40%, 98%);
+  }
+
+  .bg-slate-100 {
+    background-color: hsl(210, 40%, 96%);
+  }
+
+  .text-slate-400 {
+    color: hsl(215, 20%, 65%);
+  }
+
+  .text-slate-500 {
+    color: hsl(215, 16%, 47%);
+  }
+
+  .text-slate-600 {
+    color: hsl(215, 19%, 35%);
+  }
+
+  .text-slate-900 {
+    color: hsl(222, 84%, 5%);
+  }
+
+  .border-slate-200 {
+    border-color: hsl(214, 32%, 91%);
+  }
+
+  .border-slate-300 {
+    border-color: hsl(213, 27%, 84%);
+  }
+
+  /* Status colors */
+  .bg-emerald-100 {
+    background-color: hsl(149, 80%, 90%);
+  }
+
+  .text-emerald-800 {
+    color: hsl(158, 88%, 30%);
+  }
+
+  .bg-blue-100 {
+    background-color: hsl(221, 91%, 91%);
+  }
+
+  .text-blue-800 {
+    color: hsl(217, 91%, 60%);
+  }
+
+  .text-blue-600 {
+    color: hsl(221, 83%, 53%);
+  }
+
+  .bg-red-50 {
+    background-color: hsl(0, 86%, 97%);
+  }
+
+  .bg-red-100 {
+    background-color: hsl(0, 93%, 94%);
+  }
+
+  .border-red-200 {
+    border-color: hsl(0, 96%, 89%);
+  }
+
+  .border-red-300 {
+    border-color: hsl(0, 94%, 82%);
+  }
+
+  .text-red-600 {
+    color: hsl(0, 84%, 60%);
+  }
+
+  .text-red-800 {
+    color: hsl(0, 70%, 35%);
+  }
+
+  .bg-violet-600 {
+    background-color: hsl(242, 91%, 67%);
+  }
+
+  .bg-violet-100 {
+    background-color: hsl(240, 100%, 95%);
+  }
+
+  .text-violet-800 {
+    color: hsl(243, 75%, 30%);
+  }
+
+  .bg-amber-100 {
+    background-color: hsl(48, 100%, 88%);
+  }
+
+  .text-amber-600 {
+    color: hsl(32, 95%, 44%);
+  }
+
+  .bg-orange-500 {
+    background-color: hsl(24, 95%, 53%);
+  }
+
+  .bg-pink-500 {
+    background-color: hsl(330, 81%, 60%);
+  }
+
+  .bg-purple-500 {
+    background-color: hsl(271, 81%, 56%);
+  }
+}
+
+/* Gorgeous silver sprinkle effects */
+.silver-sprinkles {
+  position: relative;
+  overflow: hidden;
+}
+
+.silver-sprinkles::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background-image: 
+    radial-gradient(circle at 20% 80%, rgba(192, 192, 192, 0.3) 1px, transparent 1px),
+    radial-gradient(circle at 80% 20%, rgba(220, 220, 220, 0.4) 1px, transparent 1px),
+    radial-gradient(circle at 40% 40%, rgba(240, 240, 240, 0.2) 1px, transparent 1px),
+    radial-gradient(circle at 60% 60%, rgba(200, 200, 200, 0.3) 1px, transparent 1px),
+    radial-gradient(circle at 10% 30%, rgba(230, 230, 230, 0.25) 1px, transparent 1px),
+    radial-gradient(circle at 90% 70%, rgba(210, 210, 210, 0.35) 1px, transparent 1px);
+  background-size: 100px 100px, 150px 150px, 80px 80px, 120px 120px, 90px 90px, 110px 110px;
+  animation: sprinkle-float 20s linear infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes sprinkle-float {
+  0% { transform: translateX(-10px) translateY(-10px) rotate(0deg); }
+  25% { transform: translateX(5px) translateY(-5px) rotate(90deg); }
+  50% { transform: translateX(10px) translateY(5px) rotate(180deg); }
+  75% { transform: translateX(-5px) translateY(10px) rotate(270deg); }
+  100% { transform: translateX(-10px) translateY(-10px) rotate(360deg); }
+}
+
+/* Enhanced silver sprinkles for cards */
+.premium-card-sparkle {
+  position: relative;
+  background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+  border: 1px solid rgba(192, 192, 192, 0.2);
+  box-shadow: 
+    0 10px 25px rgba(0, 0, 0, 0.08), 
+    0 4px 10px rgba(0, 0, 0, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.premium-card-sparkle::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(220, 220, 220, 0.4),
+    rgba(240, 240, 240, 0.6),
+    rgba(220, 220, 220, 0.4),
+    transparent
+  );
+  transition: left 0.8s ease;
+}
+
+.premium-card-sparkle:hover::after {
+  left: 100%;
+}
+
+.premium-card-sparkle:hover {
+  transform: translateY(-3px);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.12), 
+    0 8px 16px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    0 0 30px rgba(220, 220, 220, 0.3);
+}
+
+/* Subtle shimmer for buttons */
+.btn-shimmer {
+  background: linear-gradient(135deg, hsl(var(--primary)), hsl(207, 90%, 45%));
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-shimmer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.6s ease;
+}
+
+.btn-shimmer:hover::before {
+  left: 100%;
+}
+
+/* Glass-like effect with silver tint */
+.glass-silver {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(220, 220, 220, 0.25);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+
+
+/* PWA specific styles */
+@media (display-mode: standalone) {
+  body {
+    user-select: none;
+    -webkit-user-select: none;
+  }
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* Smooth transitions */
+* {
+  transition: colors 0.2s ease-in-out;
+}
+
+/* Loading states */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(210, 40%, 96%);
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(215, 20%, 65%);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(215, 19%, 35%);
+}

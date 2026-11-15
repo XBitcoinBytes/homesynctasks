@@ -1,0 +1,48 @@
+# Added for the GitHub archive of this Replit project
+# Dependencies and tool caches
+node_modules/
+.pythonlibs/
+.upm/
+.venv/
+venv/
+.cache/
+.parcel-cache/
+.vite/
+.turbo/
+.next/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.tox/
+
+# Build output
+dist/
+build/
+coverage/
+playwright-report/
+test-results/
+*.tsbuildinfo
+*.pyc
+__pycache__/
+
+# Logs and generated runtime data
+logs/
+*.log
+
+# Secrets — never commit
+.env
+.env.*
+!.env.example
+
+# Replit / editor internals
+.config/
+.local/
+.DS_Store
+Thumbs.db
+
+node_modules
+dist
+.DS_Store
+server/public
+vite.config.ts.*
+*.tar.gz

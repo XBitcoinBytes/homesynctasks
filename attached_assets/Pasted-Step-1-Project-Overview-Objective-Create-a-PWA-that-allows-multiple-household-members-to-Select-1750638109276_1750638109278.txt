@@ -1,0 +1,67 @@
+Step 1: Project Overview
+Objective: Create a PWA that allows multiple household members to:
+Select from a library of 300+ common household tasks (e.g., cleaning baseboards, changing furnace filters, weeding) and add/delete custom tasks.
+
+Assign tasks to specific indoor rooms (e.g., Master Bedroom, Kitchen) or outdoor zones (e.g., Front Flower Bed, Gutters).
+
+Set task frequencies (daily, weekly, monthly, every 3 months, custom intervals like "every 45 days").
+
+Receive daily/weekly/monthly schedules with balanced workloads using AI to distribute tasks evenly.
+
+Mark tasks as complete, resetting their schedule (e.g., weekly toilet cleaning resets for 7 days later).
+
+View task history (e.g., "Gutters last cleaned 92 days ago") and analytics (e.g., most neglected tasks).
+
+Receive SMS notifications for task reminders (daily, weekly, or for important tasks).
+
+Collaborate with equal permissions for all household members to add, edit, delete, or complete tasks.
+Key Features:
+Task Library: 300+ predefined tasks with categories (Cleaning, Maintenance, Yardwork) and custom task support.
+
+Zones/Rooms: Predefined indoor rooms (e.g., Main Kitchen, Master Bath, Bedroom 1-6) and outdoor zones (e.g., Front of Home, Roof) with custom additions.
+
+Scheduling: AI-driven engine to generate daily task lists, balancing workload (e.g., ~1 hour/day).
+
+Notifications: SMS reminders (daily, weekly, or for critical tasks) via a service like Twilio.
+
+Multi-User: Household accounts with equal permissions for all users to manage tasks.
+
+Analytics: Track completion history, overdue tasks, and neglected areas.
+
+Progress Tracking: Dashboard with completion stats and calendar view.
+
+PWA Features: Installable on mobile/desktop, browser-based, no offline support required initially.
+Non-Requirements:
+No offline support (internet connection assumed).
+
+No sensitive data storage, but user profiles for task tracking and notifications.
+
+Free for all users, with optional Bitcoin donation support (Phase 5).
+Step 2: Tech Stack
+To build a scalable, maintainable PWA on Replit, use the following:
+Frontend: React (with Tailwind CSS for responsive, modern UI).
+
+Backend: Firebase (for user authentication, real-time database, and hosting).
+
+Database: Firestore (for tasks, zones, schedules, and user data).
+
+Notifications: Twilio API for SMS reminders.
+
+PWA Support: Workbox or Vite PWA plugin for installable app functionality.
+
+AI Workload Balancing: Simple algorithm to distribute tasks based on frequency and estimated effort (no external AI service required initially).
+
+Hosting: Firebase Hosting for deployment, compatible with Replit.
+Why This Stack?
+React + Tailwind: Fast, component-based UI development with responsive design.
+
+Firebase: Handles authentication, real-time data, and hosting with minimal setup.
+
+Firestore: Scalable for tasks, zones, and schedules; supports real-time updates for multi-user collaboration.
+
+Twilio: Reliable SMS notifications for reminders.
+
+PWA: Ensures cross-platform access without App Store approval.
+Step 3: Data Structure
+Design a Firestore database to store tasks, zones, schedules, and users:
+
